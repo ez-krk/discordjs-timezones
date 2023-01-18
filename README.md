@@ -2,7 +2,7 @@
 
 ## Prerequesites
 
-This Discord Bot uses the [discord.js](https://discord.js.org/#/) library, and the main file `/src/index.js` is very basic JavaScript such as setInterval, [Axios-HTTP GET request](https://axios-http.com/docs/example), [Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), Promises (GET request) with `.then()` and `.catch()`.
+This Discord Bot uses the [discord.js](https://discord.js.org/#/) library, and the main file `/src/index.js` is very basic JavaScript such as setInterval, [Axios-HTTP GET request](https://axios-http.com/docs/example), [Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), [Arrow Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), Promises (GET request) with `.then()` and `.catch()`, [Template strings literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals).
 
 This Application makes use of the free public tier of the [Coingecko v3 API](https://www.coingecko.com/en/api).
 
@@ -26,7 +26,7 @@ If you don't have pnpm, [install it](https://pnpm.io/installation) by using core
 
 ## Run Locally
 
-Rename the `.env.example` file to `.env`, and input your Discord App Token.
+Rename the `.env.example` file to `.env`, and input your Discord App Token, desired Coingecko Id (ex : bitcoin) and fiat collateral.
 
 Run `pnpm start` to execute the script locally.
 

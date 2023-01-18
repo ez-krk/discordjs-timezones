@@ -14,6 +14,7 @@ const GECKO_BASE = "https://api.coingecko.com/api/v3";
 const CRYPTO = process.env.CRYPTO;
 const FIAT = process.env.FIAT;
 const GECKO_PRICE = `${GECKO_BASE}/simple/price?ids=${CRYPTO}&vs_currencies=${FIAT}`;
+const DELAY = procesS.env.DELAY;
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -47,7 +48,7 @@ client.once(Events.ClientReady, async (bot) => {
       .catch((error) => {
         console.log(error);
       });
-  }, 10000);
+  }, DELAY);
   console.log(`Ready! Logged in as ${bot.user.tag}`);
 });
 
