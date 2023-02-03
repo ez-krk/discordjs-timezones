@@ -9,16 +9,12 @@ const {
 } = require("discord.js");
 
 const { token } = process.env.DISCORD_TOKEN;
+const timezone = process.env.TIMEZONE;
+const key = process.env.API_KEY;
 
-const GECKO_BASE = "https://api.coingecko.com/api/v3";
-const CRYPTO = process.env.CRYPTO;
-const FIAT = process.env.FIAT;
-const GECKO_PRICE = `${GECKO_BASE}/simple/price?ids=${CRYPTO}&vs_currencies=${FIAT}`;
+const QUERY_STRING = `http://api.timezonedb.com/v2.1/get-time-zone?key=${key}&format=json&by=zone&zone=${timezone}`;
+
 const DELAY = process.env.DELAY;
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 const client = new Client({
   intents: [
@@ -29,26 +25,21 @@ const client = new Client({
 });
 
 client.once(Events.ClientReady, async (bot) => {
-  client.user.setUsername(`${capitalizeFirstLetter(CRYPTO)}`);
-  setInterval(async () => {
-    const request = await axios
-      .get(GECKO_PRICE)
-      .then(({ data }) => {
-        console.log(data);
-        const price = data[`${CRYPTO}`][`${FIAT}`];
-        const resultd = price.toLocaleString("en-US", {
-          style: "currency",
-          currency: "USD",
-        });
-        console.log(`${capitalizeFirstLetter(CRYPTO)} price is : ${resultd}`);
-        client.user.setActivity(`${resultd}`, {
-          type: ActivityType.Watching,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
+  client.user.setUsername(`${timezone}`);
+
+  const request = await axios
+    .get(QUERY_STRING)
+    .then(({ data }) => {
+      const time = data["formatted"];
+      const status = time.split(" ")[1];
+      client.user.setActivity(`${status}`, {
+        type: ActivityType.Watching,
       });
-  }, DELAY);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   console.log(`Ready! Logged in as ${bot.user.tag}`);
 });
 
