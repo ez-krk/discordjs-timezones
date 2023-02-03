@@ -30,9 +30,11 @@ client.once(Events.ClientReady, async (bot) => {
     const request = await axios
       .get(QUERY_STRING)
       .then(({ data }) => {
-        const time = data["formatted"];
-        const status = time.split(" ")[1];
-        client.user.setActivity(`${status}`, {
+        const formatted = data["formatted"];
+        const status = formatted.split(" ")[1];
+        const time = `${status.split(":")[0]}:${status.split(":")[1]}`;
+        console.log(time);
+        client.user.setActivity(`${time}`, {
           type: ActivityType.Watching,
         });
       })

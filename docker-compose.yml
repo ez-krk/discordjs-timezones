@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  # api
+  bot_1:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node dist/main
+    env_file:
+      - .env.1
+
+  bot_2:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node dist/main
+    env_file:
+      - .env.2
+
+  bot_3:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node dist/main
+    env_file:
+      - .env.3
+
+  bot_4:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node dist/main
+    env_file:
+      - .env.4
+
+  bot_5:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node dist/main
+    env_file:
+      - .env.5
