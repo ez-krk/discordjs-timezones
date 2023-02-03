@@ -25,7 +25,7 @@ const client = new Client({
 });
 
 client.once(Events.ClientReady, async (bot) => {
-  client.user.setUsername(`${timezone}`);
+  client.user.setUsername(`${process.env.BOT_NAME}`);
   setInterval(async () => {
     const request = await axios
       .get(QUERY_STRING)

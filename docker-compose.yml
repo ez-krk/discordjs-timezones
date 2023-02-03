@@ -41,3 +41,11 @@ services:
     command: node dist/main
     env_file:
       - .env.5
+
+  bot_6:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: node dist/main
+    env_file:
+      - .env.6
