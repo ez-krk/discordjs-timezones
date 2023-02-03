@@ -26,19 +26,20 @@ const client = new Client({
 
 client.once(Events.ClientReady, async (bot) => {
   client.user.setUsername(`${timezone}`);
-
-  const request = await axios
-    .get(QUERY_STRING)
-    .then(({ data }) => {
-      const time = data["formatted"];
-      const status = time.split(" ")[1];
-      client.user.setActivity(`${status}`, {
-        type: ActivityType.Watching,
+  setInterval(async () => {
+    const request = await axios
+      .get(QUERY_STRING)
+      .then(({ data }) => {
+        const time = data["formatted"];
+        const status = time.split(" ")[1];
+        client.user.setActivity(`${status}`, {
+          type: ActivityType.Watching,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
       });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  }, DELAY);
 
   console.log(`Ready! Logged in as ${bot.user.tag}`);
 });
